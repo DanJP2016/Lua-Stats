@@ -1,4 +1,4 @@
-statistics = {}
+local statistics = {}
 
 function statistics:mean(data)
   assert(type(data) == 'table', 'MODE function PARAMETER: DATA must be a TABLE')
