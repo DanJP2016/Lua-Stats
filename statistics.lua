@@ -75,9 +75,9 @@ function statistics:sd(v)
 end
 
 function statistics:z_score(val, m, sd)
-  assert(type(data) == 'table', 'Z_SCORE function PARAMETER: DATA must be a TABLE')
+  assert(type(val) == 'number', 'Z_SCORE function PARAMETER: VAL must be a NUMBER')
   assert(type(m) == 'number', 'Z_SCORE function PARAMETER: M must be a NUMBER')
-  assert(type(v) == 'number', 'Z_SCORE function PARAMETER: SD must be a NUMBER')
+  assert(type(sd) == 'number', 'Z_SCORE function PARAMETER: SD must be a NUMBER')
   return (val - m) / sd
 end
 
@@ -85,7 +85,7 @@ end
 function statistics:z_score_all(data, m, sd, show)
   assert(type(data) == 'table', 'Z_SCORE_ALL function PARAMETER: DATA must be a TABLE')
   assert(type(m) == 'number', 'Z_SCORE_ALL function PARAMETER: M must be a NUMBER')
-  assert(type(v) == 'number', 'Z_SCORE_ALL function PARAMETER: SD must be a NUMBER')
+  assert(type(sd) == 'number', 'Z_SCORE_ALL function PARAMETER: SD must be a NUMBER')
 
   show = show or false
   assert(type(show) == 'boolean', 'SHOW must be a BOOLEAN value')
