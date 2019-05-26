@@ -13,17 +13,19 @@ end
 
 function statistics:median(data)
   assert(type(data) == 'table', 'MEDIAN function PARAMETER: DATA must be a TABLE')
-  table.sort(data)
+  
+  local sorted = {table.unpack(data)}
+  table.sort(sorted)
 
   local m = 0
 
-  if #data % 2 == 0 then
-    local a = data[#data / 2]
-    local b = data[(#data / 2) + 1]
+  if #sorted % 2 == 0 then
+    local a = sorted[#sorted / 2]
+    local b = sorted[(#sorted / 2) + 1]
 
     m = (a + b) / 2
   else
-    m = data[math.ceil(#data / 2)]
+    m = sorted[math.ceil(#sorted / 2)]
   end
 
   return m
@@ -31,9 +33,11 @@ end
 
 function statistics:range(data)
   assert(type(data) == 'table', 'RANGE function PARAMETER: DATA must be a TABLE')
-
-  table.sort(data)
-  return data[#data] - data[1]
+  
+  local sorted = {table.unpack(data)}
+  table.sort(sorted)
+  
+  return data[#sorted] - sorted[1]
 end
 
 function statistics:variance(data, m)
