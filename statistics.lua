@@ -55,6 +55,75 @@ function statistics:variance(data, m)
   return dif / #data
 end
 
+-- flatten multi-dimensional tables
+function statistics:flat(data)
+  assert(type(data) == 'table', 'FLAT function PARAMETER: DATA must be a TABLE')
+
+  local result = {}
+
+    function f(val)
+      for i = 1, #val do
+        if type(val[i]) ~= 'table' then
+          table.insert(result, val[i])
+        else
+          f(val[i])
+        end
+      end
+    end
+
+    f(data)
+
+  return result
+end
+
+function statistics:counter(data)
+  assert(type(data) == 'table', 'COUNTER function PARAMETER: DATA must be a TABLE')
+  data = statistics:flat(data)
+  table.sort(data)
+
+  local values = {}
+  for i = 1, #data do
+    values[i] = 0
+  end
+
+  for i = 1, #data do
+    values[data[i]] = values[data[i]] + 1
+  end
+
+  return values
+end
+
+function statistics:mode(data)
+  assert(type(data) == 'table', 'MODE function PARAMETER: DATA must be a TABLE')
+  data = statistics:flat(data)
+  table.sort(data)
+
+  local values = statistics:counter(data)
+  local modes = {}
+  local h = 1
+  local n = 0
+
+  for k, v in pairs(values) do
+    if v > h then
+      h = v
+      n = k
+      modes = {}
+      table.insert(modes, k)
+    elseif v == h then
+      table.insert(modes, k)
+    end
+  end
+
+  if h == 1 then
+    print('mode: \n\tno mode found, all values occur an equal number of times')
+  else
+    print('mode: \n\tthe values: ' .. table.concat(modes, ',') .. ' \toccur: ' .. tostring(h) ..' times' )
+  end
+
+  return modes, h
+end
+
+
 
 -- sample variance
 function statistics:s_variance(data, m)
