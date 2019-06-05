@@ -8,7 +8,7 @@ function statistics:mean(data)
     sum = sum + data[i]
   end
 
-  return sum
+  return sum / #data
 end
 
 function statistics:median(data)
