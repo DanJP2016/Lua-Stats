@@ -2,9 +2,6 @@
 
 Small statistical library for working with numerical data in Lua.
 
-Disclaimer: I am not a math person. Corrections and recommendations greatly appreciated.
-
-
 ## Usage
 
 To use this library 
