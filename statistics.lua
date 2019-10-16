@@ -37,7 +37,7 @@ function statistics:range(data)
   local sorted = {table.unpack(data)}
   table.sort(sorted)
   
-  return data[#sorted] - sorted[1]
+  return sorted[#sorted] - sorted[1]
 end
 
 function statistics:variance(data, m)
