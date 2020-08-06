@@ -82,12 +82,13 @@ function statistics:counter(data)
   table.sort(data)
 
   local values = {}
-  for i = 1, #data do
-    values[i] = 0
-  end
 
   for i = 1, #data do
-    values[data[i]] = values[data[i]] + 1
+    if values[data[i]] == nill then
+      values[data[i]] = 1
+    else
+      values[data[i]] = values[data[i]] + 1
+    end
   end
 
   return values
