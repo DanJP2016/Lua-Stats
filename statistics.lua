@@ -1,7 +1,7 @@
 local statistics = {}
 
 function statistics:mean(data)
-  assert(type(data) == 'table', 'MODE function PARAMETER: DATA must be a TABLE')
+  assert(type(data) == 'table', 'MEAN function PARAMETER: DATA must be a TABLE')
   local sum = 0
 
   for i = 1, #data do
